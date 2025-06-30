@@ -1,0 +1,5 @@
+
+.homeScreen{
+    display: flex;
+    flex-direction: column;
+}

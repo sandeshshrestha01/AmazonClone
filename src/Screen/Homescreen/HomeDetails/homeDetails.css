@@ -1,0 +1,97 @@
+.homeDetails {
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: rgb(238, 235, 235);
+}
+.homeDetailLongCard {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: white;
+}
+.homeDetailLongCardTitle {
+  font-size: 21px;
+  font-weight: 600;
+}
+.homeDetailLongCardItems {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  overflow: hidden;
+}
+.scrollDiv {
+  display: flex;
+  padding-bottom: 25px;
+  width: 100%;
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.scrollDiv::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the scrollbar */
+}
+
+.homeDetailLongCardItem {
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  min-width: 145px;
+  background-color: rgb(247, 247, 247);
+}
+.homeDetailLongCardItemImg {
+  width: auto;
+  height: auto;
+  max-width: 270px;
+  max-height: 200px;
+  vertical-align: middle;
+}
+/* Add to homeDetails.css */
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 36px;
+  height: 80px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0.8;
+  transition: background 0.2s;
+}
+.arrowBtn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.arrowBtn.left {
+  left: -6px;
+}
+.arrowBtn.right {
+  right:-6px;
+}
+.homeDetailLongCardItems:hover .arrowBtn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.arrowBtn:hover {
+  background: #dddddd;
+  overflow:visible;
+
+}

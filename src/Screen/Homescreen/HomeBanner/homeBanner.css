@@ -1,0 +1,78 @@
+.homeBanner{
+    width: 100%;
+    object-fit: contain;
+    background-repeat: no-repeat;
+    position: relative;
+}
+/* Target the slideshow nav arrows and move them to the top */
+.react-slideshow-container .nav {
+  top: 70px !important;
+  bottom: auto !important;
+  transform: none !important;
+}
+
+/* Optional: Adjust left/right position if needed */
+.react-slideshow-container .nav.default-nav {
+  margin-top: 10px !important;
+}
+.homeBannerimg{
+    height: 80vh;
+    width: 100% !important;
+    mask-image: linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+    
+}
+.grayBackgroundHomeBanner{
+    background-color: rgb(238, 235, 235);
+    height: 90vh;
+}
+.homeBannerItemDiv{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+    top: 22%;
+    padding: 0 15px;
+    position: absolute;
+}
+.homeBannerItemDivCard{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    width: 316px;
+    box-sizing: border-box;
+    padding: 20px 0 15px;
+}
+.homeBannerItemDivCardTitle{
+    margin: 0px 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.imgHomeBannerItemDivCard{
+    margin: 15px 15px;
+    display: grid;
+    grid-template-columns: auto auto;
+
+}
+.imgBannerHomeDiv{
+    height: 140px;
+    width: 145px;
+    display: flex;
+    flex-direction: column;
+
+}
+.imgBannerHomeDivImg{
+    
+    width: 95%;
+    height: 75%;
+}
+.imgBannerImgName{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.seeMoreHomeBanner{
+    margin: 0 20px;
+    font-size: 13px;
+    color: #007185;
+    font-weight: 600;
+}
