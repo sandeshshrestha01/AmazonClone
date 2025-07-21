@@ -103,12 +103,12 @@
 }
 /* Add to navbarBelt.css */
 .navbarBeltSearchBoxAllSelect {
-  min-width: 80px;
+  min-width: 60px;
   width: auto;
   padding: 6px 28px 6px 8px;
   border: 1px solid #ccc;
   border-radius: 3px 0 0 3px;
-  font-size: 14px;
+  font-size: 12px;
   appearance: none;
   background: transparent;
   cursor: pointer;
@@ -191,15 +191,17 @@
 }
 
 .helloSignInNavbaeBelt{
-    display: flex;
-    position: relative;
-    color: white;
-    text-decoration: none;
-    flex-direction: column;
-    height: 30px;
-    padding: 8px;
-    cursor: pointer;
-    transition: .3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-decoration: none;
+  height: 30px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background: none;
     &:hover{
         border-radius: 3px;
         border: 1px solid;
@@ -233,6 +235,7 @@
   font-size: 15px;
   color: #111;
   cursor: pointer;
+  text-decoration: none;
   background: none;
   border: none;
   text-align: left;
@@ -247,25 +250,7 @@
 
 }
 
-/* Make sure the parent is positioned */
-.helloSignInNavbaeBelt {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  text-decoration: none;
-  height: 30px;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 3px;
-  border: 1px solid transparent;
-  background: none;
-}
-
-.helloSignInNavbaeBelt:hover {
-  border: 1px solid #fff;
-  background: #232f3e;
-}
+    /* Make sure the parent is positioned */
 .helloTopNavbarBelt{
     font-size: 12px;
     font-weight: 400;

@@ -7,6 +7,7 @@ import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
+import { userData } from "../../../signupapi";
 
 import { useSelector } from "react-redux";
 const options = [
@@ -34,9 +35,11 @@ const options = [
 ];
 
 const NavbarBelt = () => {
+
   const [selected, setSelected] = useState(options[0]);
   const spanRef = useRef(null);
   const [selectWidth, setSelectWidth] = useState(0);
+  const { username, jwt } = userData(); 
 
   useEffect(() => {
     if (spanRef.current) {
@@ -92,7 +95,7 @@ const NavbarBelt = () => {
                 visibility: "hidden",
                 height: 0,
                 whiteSpace: "pre",
-                fontSize: "14px",
+                fontSize: "12px",
                 fontFamily: "inherit",
                 fontWeight: "normal",
               }}
@@ -137,7 +140,10 @@ const NavbarBelt = () => {
         </div>
 
         <div className="helloSignInNavbaeBelt">
-          <div className="helloTopNavbarBelt">Hello,User</div>
+          <div className="helloTopNavbarBelt">{jwt ? (
+      <>Hello, {username}</>
+    ) : ( <>Hello, sign in</>
+    )}</div>
           <div className="nepalCodeNavbarBelt">Accounts & Lists</div>
           <div className="amazonDropDown">
               <Link to={'signIn'} className="amazon-dropdown-item">Sign In</Link>

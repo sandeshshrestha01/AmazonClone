@@ -1,35 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./products.css";
-import ProductDetail from "./products.json";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from '../../redux/actions/action'
-import { toast,ToastContainer } from "react-toastify";
-const ProductsElectronics = () => {
-  const options = [
-    { name: "Mobiles & Accessories" },
-    { name: "Laptops & Accessories" },
-    { name: "TV & Home Entertainment" },
-    { name: "Audio" },
-    { name: "Cameras" },
-    { name: "Computer Peripherals" },
-    { name: "Smart Technology" },
-    { name: "Musical Instruments" },
-    { name: "Office & Stationery" },
-  ];
- const dispatch = useDispatch();
- const cartItems = useSelector((state)=> state.cart.items)
- const handleAddToCart =(item)=>{ 
-    toast.success("Added in Card",{position:"bottom-right"});
+import { addToCart } from "../../redux/actions/action";
+import { toast, ToastContainer } from "react-toastify";
+import BASE_URL from "../../globleVariable";
+import fetchData from "../../API/fetchdata";
+import { Link, useParams } from "react-router-dom";
+
+const ProductsList = () => {
+  const params = useParams();
+  const category = params.category;
+  const additionalUrl = category
+    ? `?populate=*&filters[Product_Category][$eqi]=${category}`
+    : "?populate=*";
+  const bannerUrl = category
+    ? `?populate=*&filters[BannerListCategory][$eqi]=${category}`
+    : "?populate=*";
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+  const handleAddToCart = (item) => {
+    toast.success("Added in Card", { position: "bottom-right" });
     dispatch(addToCart(item));
- }
+  };
+  const [Products, setProducts] = useState([]);
+
+  const [BannerList, setBannerList] = useState([]);
+  useEffect(() => {
+    const getBannerList = async () => {
+      const bannerApiUrl = BASE_URL + "/api/product-banners" + bannerUrl;
+      const data = await fetchData(bannerApiUrl);
+      setBannerList(Array.isArray(data) ? data : []);
+    };
+    getBannerList();
+  }, [category, bannerUrl]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const productUrl = BASE_URL + "/api/productselectronics" + additionalUrl;
+      const data = await fetchData(productUrl);
+      setProducts(Array.isArray(data) ? data : []);
+    };
+    getProducts();
+  }, [category, additionalUrl]);
+
   return (
     <div className="productPage">
       <div className="productTopBanner">
-        <div className="productTopBannerItems">Electronics</div>
-        {options.map((item, ind) => {
-          return <div className="productTopBannerItemSubMenu">{item.name}</div>;
+        <div className="productTopBannerItems">{category}</div>
+        {BannerList.map((item, ind) => {
+          return (
+            <div className="productTopBannerItemSubMenu" key={ind.id}>
+              {item.Banner_List}
+            </div>
+          );
         })}
       </div>
 
@@ -100,22 +125,23 @@ const ProductsElectronics = () => {
           <div className="productsPageMainRightTopBanner">
             1-5 of result for{" "}
             <span className="productsPageMainRightTopBannerSpan">
-              Electronics
+              {category}
             </span>
           </div>
           <div className="itemsImageProductPage">
-            {ProductDetail.product.map((item, index) => {
+            {Products.map((item, index) => {
               return (
+                <Link to={`/productdetail`} className="productLink">
                 <div className="itemsImageProductPageOne" key={item.id}>
                   <div className="imgBlockItemsImageProductPageOne">
                     <img
-                      src={item.imageUrl}
+                      src={BASE_URL + item?.prodictsImage?.url}
                       className="productImageProduct"
                       alt=""
                     />
                   </div>
                   <div className="productNameProduc">
-                    <div>{item.name}</div>
+                    <div>{item.productsTitle}</div>
                     <div className="productNameProductRating">
                       {Array.from({ length: 5 }).map((_, i) =>
                         i >= 4 ? (
@@ -134,26 +160,36 @@ const ProductsElectronics = () => {
                     <div className="priceProductDetailPage">
                       <div className="currencyText">₹</div>
                       <div className="rateHomeDetail">
-                        <div className="rateHomedetailsPrice">{item.price}</div>
-                        <div className="addtobasketBtn"onClick={()=>{handleAddToCart(item)}}>Add to Cart</div>
+                        <div className="rateHomedetailsPrice">
+                          {item.productPrice}
+                        </div>
+                        <div
+                          className="addtobasketBtn"
+                          onClick={() => {
+                            handleAddToCart(item);
+                          }}
+                        >
+                          Add to Cart
+                        </div>
                       </div>
                     </div>
                     <div className="offProductPage">
-                      Up to 10% off on select Cards
+                      Up to {item.productDiscount}% off on select Cards
                     </div>
                     <div className="freeDeliveryHomepage">
                       Free Delivery By Amazon
                     </div>
                   </div>
                 </div>
+                </Link>
               );
             })}
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
 
-export default ProductsElectronics;
+export default ProductsList;

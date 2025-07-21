@@ -10,12 +10,12 @@ const NavbarBanner = () => {
     { name: "Sell", link: "/productsell" },
     { name: "Best Sellers" },
     { name: "Today's Deals" },
-    { name: "Mobiles" },
-    { name: "Electronics", link: "ProductsElectronics" },
+    { name: "Mobiles" ,link: "product/Mobiles" },
+    { name: "Electronics", link: "product/Electronic" },
     { name: "Prime" },
-    { name: "Customer Service" },
+    { name: "Customer Service"  },
     { name: "Fashion" },
-    { name: "Home & Kitchen" },
+    { name: "Home & Kitchen", link:"product/kitchen" },
   ];
   return (
     <div className="navbarBanner">

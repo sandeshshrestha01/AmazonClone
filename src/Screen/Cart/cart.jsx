@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import'./cart.css'
 import { useSelector, useDispatch } from "react-redux";
+import BASE_URL from '../../globleVariable';
 import { removeFromCart } from '../../redux/actions/action';
 import { toast,ToastContainer } from "react-toastify";
 
@@ -10,7 +11,7 @@ const [cartItem, setCartItem]= useState([]);
  const cartItems = useSelector((state)=> state.cart.items);
  
  let Total = 0; 
- let cost = cartItems.map((item)=>{return Total= Total + item.price})
+ let cost = cartItems.map((item)=>{return Total= Total + item.productPrice})
  useEffect(()=>{
     setCartItem(cartItems);
  },[cartItems])
@@ -41,11 +42,11 @@ const handlepurchase = () => {
                               <div className="cartItemBlock">
                     <div className="cartItemLeftBlock">
                         <div className="cartItemLeftBlockImage">
-                            <img className="cartItemLeftBlockImg"src={item.imageUrl} alt="" />
+                            <img className="cartItemLeftBlockImg"src={BASE_URL + item?.prodictsImage?.url} alt="" />
                         </div>
 
                         <div className="cartItemLeftBlockDetails">
-                            <div className="cartItemProductName">{item.name}</div>
+                            <div className="cartItemProductName">{item.productsTitle}</div>
                             <div className="inStockCart">In stock</div>
                             <div className="elgFreeShp">Elligible for FREE Shiping</div>
                             <div className="amazonFullFilledImage"><img src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png" alt="" /></div>
@@ -53,7 +54,7 @@ const handlepurchase = () => {
                         </div>
 
                     </div>
-                    <div className="cartItemRightBlock">Rs. {item.price}</div>
+                    <div className="cartItemRightBlock">Rs. {item.productPrice}</div>
                 </div>
 
                         )

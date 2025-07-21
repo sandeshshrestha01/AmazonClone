@@ -92,6 +92,10 @@
   gap: 50px 100px;
   grid-template-columns: 308px 308px 308px;
 }
+.productLink{
+  text-decoration: none;
+  color: inherit;
+}
 
 .itemsImageProductPageOne {
   display: flex;
